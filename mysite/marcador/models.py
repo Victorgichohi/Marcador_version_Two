@@ -7,7 +7,11 @@ from django.db import models
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
-
+#sets the display name taccording to name
+ class Meta:
+        verbose_name = 'tag'
+        verbose_name_plural = 'tags'
+        ordering = ['name']
 
 class Bookmark(models.Model):
     url = models.URLField()
@@ -19,3 +23,9 @@ class Bookmark(models.Model):
     owner = models.ForeignKey(User, verbose_name='owner',
         related_name='bookmarks')
     tags = models.ManyToManyField(Tag, blank=True)
+
+#sets the bookmarks display name according to date created
+  class Meta:
+        verbose_name = 'bookmark'
+        verbose_name_plural = 'bookmarks'
+        ordering = ['-date_created']
