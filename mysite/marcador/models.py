@@ -12,7 +12,7 @@ from django.utils.timezone import now
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
 #sets the display name taccording to name
- class Meta:
+class Meta:
         verbose_name = 'tag'
         verbose_name_plural = 'tags'
         ordering = ['name']
@@ -44,15 +44,15 @@ class Bookmark(models.Model):
     public = PublicBookmarkManager()
 
 #sets the bookmarks display name according to date created
-  class Meta:
+class Meta:
         verbose_name = 'bookmark'
         verbose_name_plural = 'bookmarks'
         ordering = ['-date_created']
 
- def __str__(self):
+def __str__(self):
         return '%s (%s)' % (self.title, self.url)
 #creates id field if not set
-    def save(self, *args, **kwargs):
+def save(self, *args, **kwargs):
         if not self.id:
             self.date_created = now()
         self.date_updated = now()
