@@ -17,6 +17,12 @@ class Tag(models.Model):
         verbose_name_plural = 'tags'
         ordering = ['name']
 
+#this returns only the public bookmarks
+class PublicBookmarkManager(models.Manager):
+    def get_queryset(self):
+        qs = super(PublicBookmarkManager, self).get_queryset()
+        return qs.filter(is_public=True)
+
 #returns the name to determine if an id is set in that field
 def __str__(self):
         return self.name
@@ -32,6 +38,10 @@ class Bookmark(models.Model):
     owner = models.ForeignKey(User, verbose_name='owner',
         related_name='bookmarks')
     tags = models.ManyToManyField(Tag, blank=True)
+
+    #this returns only the public bookmarks too
+    objects = models.Manager()
+    public = PublicBookmarkManager()
 
 #sets the bookmarks display name according to date created
   class Meta:
