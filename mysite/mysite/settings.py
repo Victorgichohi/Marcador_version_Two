@@ -97,7 +97,12 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
+
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets') #will contain all static files
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'), #do not know what this does, i think its for the stles i create custom
+)
