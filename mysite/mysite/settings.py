@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'marcador',
+    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -106,3 +107,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets') #will contain all static files
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'), #do not know what this does, i think its for the stles i create custom
 )
+
+# These constants configure the automatic redirect after the login and the logout.
+LOGIN_URL = 'mysite_login'
+LOGOUT_URL = 'mysite_logout'
+LOGIN_REDIRECT_URL = 'marcador_bookmark_list'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
